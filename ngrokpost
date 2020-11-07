@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ $(curl -s localhost:4040/api/tunnels) =~ https://[0-9a-f]{12}\.ngrok\.io ]]; then
+  ngrokurl=${BASH_REMATCH[0]}
+
+  echo ${ngrokurl}
+  curl -X POST -H "Content-Type: application/json" -d '{"url": "'${ngrokurl}'"}' https://hook.integromat.com/wrlqycuweuvypwao6k16y6vyp1a8pxbn
+fi
